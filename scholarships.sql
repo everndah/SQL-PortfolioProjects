@@ -1,4 +1,12 @@
-/* Get schoarships data from kaggle */
+/* In this project we find and compare scholarships for college students, college grants, fellowships, federal financial aid and other forms of student funding to cover expenses for international Bachelors, Masters and PhDs worldwide using  Standard Query language.
+
+1. Get scholarships data from kaggle.
+2.Create a database
+3.Create a table and import the CSV data into the database.
+4. Use SQL TO query the language 
+
+Dataset link- https://www.kaggle.com/datasets/timmofeyy/-universities-schoolarships-all-around-the-world */
+
 
 /* Create a database called scholarshipsdb*/
 
@@ -26,7 +34,7 @@ CREATE TABLE students(
 
 
 /* Import data into the students table. 
-The  data  has five string  columns and one interger column*/
+The  data  has five string  columns and one integer column*/
 
 \copy students FROM '/Users/USER/Scholarships.csv' DELIMITER ',' CSV HEADER;
 
@@ -91,7 +99,7 @@ SELECT * FROM students WHERE degrees in ('Master', 'Bachelor', 'Phd') AND funds 
 SELECT * FROM students WHERE date BETWEEN '1-Jan 2019' AND '31-Dec-2019';
 
 
-/*Fetch entries that  atleast  have a batchelor*/
+/*Fetch entries that  at least  have a bachelor*/
 
 SELECT * FROM students WHERE degrees  LIKE '%chelor';
 
@@ -103,7 +111,7 @@ SELECT * FROM students WHERE title = 'NLU Alumni Scholarship'
 
 /* Group by location  and the number of people from every location
 1.
-2. Fectch locations those having more than 100 people */
+2. Fetch locations those having more than 100 people */
 
 SELECT location, COUNT(*) FROM students GROUP BY location;
 
