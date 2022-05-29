@@ -8,19 +8,20 @@
 Dataset link- https://www.kaggle.com/datasets/timmofeyy/-universities-schoolarships-all-around-the-world */
 
 
-/* Create a database called scholarshipsdb*/
+
+-- Create a database called scholarshipsdb
 
 CREATE DATABASE scholarshipsdb;
 
-/*Check a list of databases*/
+--Check a list of databases
 
 \l   
 
-/*Connect  to scholarshipsdb database*/
+--Connect  to scholarshipsdb database
 
 \c scholarshipsdb;
 
-/* Create a table inside scholarshipsdb */
+-- Create a table inside scholarshipsdb 
 
 CREATE TABLE students(
     id BIGSERIAL  PRIMARY KEY,
@@ -38,23 +39,23 @@ The  data  has five string  columns and one integer column*/
 
 \copy students FROM '/Users/USER/Scholarships.csv' DELIMITER ',' CSV HEADER;
 
-/*  Alter table Columns to accept more varchar*/
+-- Alter table Columns to accept more varchar
 
 ALTER TABLE students ALTER COLUMN title TYPE varchar(250);
 ALTER TABLE students ALTER COLUMN funds TYPE varchar(250);
 ALTER TABLE students ALTER COLUMN degree TYPE varchar(200);
 
-/* Alternatively let us  alter varchar to Text*/
+-- Alternatively let us  alter varchar to Text
 
 ALTER TABLE students ALTER COLUMN title TYPE TEXT;
 ALTER TABLE students ALTER COLUMN funds TYPE TEXT;
 ALTER TABLE students ALTER COLUMN degree TYPE TEXT;
 
-/* Inspect the number of rows  in the table*/
+-- Inspect the number of rows  in the table
 
 SELECT COUNT(*) students;
 
-/*View the number of countries in the data*/
+--View the number of countries in the data
 
 SELECT DISTINCT location FROM students ORDER BY location ASC;
 
@@ -70,7 +71,7 @@ SELECT *  FROM students WHERE location  = 'nigeria' OR location = 'south-africa'
 
 SELECT *  FROM students WHERE (location  = 'nigeria' OR location = 'south-africa') AND degrees = 'Master'; 
 
-/*View the date in descending order*/
+-- View the date in descending order
 
 SELECT * FROM students ORDER BY date DESC;
 
@@ -79,9 +80,10 @@ Select the date column and look at the number of unique  values in the date colu
 
 SELECT DISTINCT date from students;
 
-/*INSPECT THE FIRST 10 ROWS*/
+--INSPECT THE FIRST 10 ROWS
 
-SELECT * FROM students LIMIT 10;
+SELECT * FROM students LIMIT 10; /* Also can be done using*/
+SELECT * FROM students FETCH FIRST 10 ROW ONLY;
 
 /*INSPECT THE 100 ROWS AFTER THE FIRST 50 ROWS*/
 
@@ -94,16 +96,16 @@ SELECT * FROM students WHERE degrees in ('Master', 'Bachelor', 'Phd') AND funds 
 
 SELECT * FROM students WHERE degrees in ('Master', 'Bachelor', 'Phd') AND funds = 'Fully Funded' ORDER BY location;
 
-/*SELECT scholarships from the year 2019 only*/
+--SELECT scholarships from the year 2019 only
 
 SELECT * FROM students WHERE date BETWEEN '1-Jan 2019' AND '31-Dec-2019';
 
 
-/*Fetch entries that  at least  have a bachelor*/
+--Fetch entries that  at least  have a bachelor
 
 SELECT * FROM students WHERE degrees  LIKE '%chelor';
 
-/*Fetch  scholarships titles*/
+--Fetch  scholarships titles
 
 SELECT DISTINCT title FROM students;
 
@@ -111,7 +113,7 @@ SELECT * FROM students WHERE title = 'NLU Alumni Scholarship'
 
 /* Group by location  and the number of people from every location
 1. Count grouped by location.
-2. Fetch locations those having more than 100 people */
+2. Fetch locations having more than 100 people */
 
 SELECT location, COUNT(*) FROM students GROUP BY location;
 
