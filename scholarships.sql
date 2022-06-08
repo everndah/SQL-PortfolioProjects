@@ -120,3 +120,30 @@ SELECT location, COUNT(*) FROM students GROUP BY location;
 SELECT location, COUNT(*) FROM students GROUP BY location ORDER BY count  DESC; /* Most are from the UK-309*/
 
 SELECT location, COUNT(*) FROM students GROUP BY location HAVING COUNT(*) > 100 ORDER BY location  DESC;
+
+-- Query the funds column
+
+SELECT funds,count(*) FROM students GROUP BY funds;
+SELECT funds,count(*) FROM students GROUP BY funds ORDER BY count DESC;
+
+/* It can  be seen  that  most  students were fully  funded
+Since there  are  those who were partially funded and those who where half funded let us check  them*/
+
+SELECT * FROM students WHERE funds = 'Partially Funded';
+
+/*1. From which location were most students partially funded
+  2. What  were their qualifications */
+
+SELECT location,count(*) FROM students WHERE funds = 'Partially Funded' GROUP BY location ORDER BY count DESC;
+
+SELECT degrees,count(*)  FROM students WHERE funds = 'Partially Funded' GROUP BY degrees ORDER BY count DESC; 
+
+/*Most of  those who were  fully funded had masters
+See*/
+
+--1. list of Masters students who are partially funded
+SELECT * FROM students WHERE (funds = 'Partially Funded' AND degrees = 'Master');
+
+--2. Location with most students  who are partially funded
+
+SELECT location,count(*) FROM students WHERE (funds = 'Partially Funded' AND degrees = 'Master') GROUP BY location;
