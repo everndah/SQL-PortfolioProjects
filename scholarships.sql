@@ -115,6 +115,8 @@ SELECT * FROM students WHERE title = 'NLU Alumni Scholarship'
 1. Count grouped by location.
 2. Fetch locations having more than 100 people */
 
+SELECT location AS student_location FROM students; /* select location column as student location*/
+
 SELECT location, COUNT(*) FROM students GROUP BY location;
 
 SELECT location, COUNT(*) FROM students GROUP BY location ORDER BY count  DESC; /* Most are from the UK-309*/
