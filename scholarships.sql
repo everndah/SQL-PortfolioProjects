@@ -127,6 +127,7 @@ SELECT location, COUNT(*) FROM students GROUP BY location HAVING COUNT(*) > 100 
 
 SELECT funds,count(*) FROM students GROUP BY funds;
 SELECT funds,count(*) FROM students GROUP BY funds ORDER BY count DESC;
+SELECT COALESCE(funds,'funds not provided') FROM students; /* Fill where funds value is null with the default value 'Funds not provided'
 
 /* It can  be seen  that  most  students were fully  funded
 Since there  are  those who were partially funded and those who where half funded let us check  them*/
